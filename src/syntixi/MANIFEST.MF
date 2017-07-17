@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: syntixi.input.Generator
+Class-Path: lib/aspectjrt.jar lib/tools.jar lib/javassist.jar lib/jdom-2.0.6.jar lib/oval-1.85.jar
