@@ -24,7 +24,7 @@ public aspect AnalysisAspect {
 
     pointcut execAnalyzeApi(): execution(* *.analyzeAPI(..));
 
-    pointcut execSearchCompatibleMethod(String keyword): execution(* syntixi.instrumentation.agent.JVMExplorer.searchCompatibleMethod(java.lang.String)) && args(keyword);
+    //pointcut execSearchCompatibleMethod(String keyword): execution(* agent.JVMExplorer.searchCompatibleMethod(String)) && args(keyword);
 
     before(Requirement requirement, Checklist checklist): execBasicAnalysis(requirement, checklist) {
         System.out.println("\tRequirement:\t" + requirement.getDescription().getName());
@@ -38,9 +38,9 @@ public aspect AnalysisAspect {
         System.out.println("\tAnalyzing JAVA API");
     }
 
-    before(String keyword): execSearchCompatibleMethod(keyword) {
+    /*before(String keyword): execSearchCompatibleMethod(keyword) {
         System.out.println("\t\tFunctionality:\t" + keyword);
-    }
+    }*/
 
     after() returning(Boolean answer):callHasSimilarGoal() {
         if(answer)
