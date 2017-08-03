@@ -2,14 +2,13 @@ package syntixi.fusion.core.planning;
 
 import javassist.CtClass;
 import syntixi.fusion.core.knowledge.store.PlanningStore;
+import syntixi.fusion.core.knowledge.store.StatusStore;
 import syntixi.util.bean.Provision;
 import syntixi.util.bean.Requirement;
 import syntixi.util.inst.ComponentBuilder;
 
 import java.util.Map;
 import java.util.Vector;
-
-import static syntixi.fusion.core.knowledge.store.StatusStore.getStatusStore;
 
 /**
  * <code>GCWC1</code> encapsulates the alternative to fusing components by
@@ -54,7 +53,8 @@ public class GCWC1 implements Strategy {
             readyClasses.add(ctMonolithicClass);
             readyClasses.add(ctSimpleConnector);
 
-            getStatusStore().setBasicAnalysis(true);
+            //getStatusStore().setBasicAnalysis(true);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, true);
         }
         catch (Exception e) {
         }
@@ -87,7 +87,8 @@ public class GCWC1 implements Strategy {
             readyClasses.add(ctMonolithicClass);
             readyClasses.add(ctSimpleConnector);
 
-            getStatusStore().setBasicAnalysis(true);
+            //getStatusStore().setBasicAnalysis(true);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, true);
         }
         catch (Exception e) {
         }
@@ -123,7 +124,8 @@ public class GCWC1 implements Strategy {
             readyClasses.add(ctMonolithicClass);
             readyClasses.add(ctSimpleConnector);
 
-            getStatusStore().setBasicAnalysis(true);
+            //getStatusStore().setBasicAnalysis(true);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, true);
         }
         catch (Exception e) {
         }
@@ -137,7 +139,8 @@ public class GCWC1 implements Strategy {
         try {
             completeAndPartial(requirement);
 
-            getStatusStore().setBasicAnalysis(false);
+            //getStatusStore().setBasicAnalysis(false);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, false);
         }
         catch (Exception e) {
         }
@@ -148,7 +151,8 @@ public class GCWC1 implements Strategy {
         try {
             allComplete(requirement);
 
-            getStatusStore().setBasicAnalysis(false);
+            //getStatusStore().setBasicAnalysis(false);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, false);
         }
         catch (Exception e) {
         }
@@ -159,7 +163,8 @@ public class GCWC1 implements Strategy {
         try {
             allPartial(requirement);
 
-            getStatusStore().setBasicAnalysis(false);
+            //getStatusStore().setBasicAnalysis(false);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, false);
         }
         catch (Exception e) {
         }
@@ -171,7 +176,8 @@ public class GCWC1 implements Strategy {
         readyClasses = new Vector<>();
 
         try {
-            getStatusStore().setBasicAnalysis(false);
+            //getStatusStore().setBasicAnalysis(false);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, false);
         }
         catch (Exception e) {
 

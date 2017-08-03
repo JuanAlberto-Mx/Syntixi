@@ -56,7 +56,8 @@ public class GCWC2 implements Strategy {
 
             addMainMethod(ctMostImportantClass);
 
-            StatusStore.getStatusStore().setBasicAnalysis(true);
+            //StatusStore.getStatusStore().setBasicAnalysis(true);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, true);
         }
         catch (Exception e) {
         }
@@ -89,7 +90,8 @@ public class GCWC2 implements Strategy {
 
             addMainMethod(ctMostImportantClass);
 
-            StatusStore.getStatusStore().setBasicAnalysis(true);
+            //StatusStore.getStatusStore().setBasicAnalysis(true);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, true);
         }
         catch (Exception e) {
         }
@@ -127,7 +129,8 @@ public class GCWC2 implements Strategy {
 
             addMainMethod(ctMostImportantClass);
 
-            StatusStore.getStatusStore().setBasicAnalysis(true);
+            //StatusStore.getStatusStore().setBasicAnalysis(true);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, true);
         }
         catch (Exception e) {
         }
@@ -141,7 +144,8 @@ public class GCWC2 implements Strategy {
         try {
             completeAndPartial(requirement);
 
-            StatusStore.getStatusStore().setBasicAnalysis(false);
+            //StatusStore.getStatusStore().setBasicAnalysis(false);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, false);
         }
         catch (Exception e) {
         }
@@ -152,7 +156,8 @@ public class GCWC2 implements Strategy {
         try {
             allComplete(requirement);
 
-            StatusStore.getStatusStore().setBasicAnalysis(false);
+            //StatusStore.getStatusStore().setBasicAnalysis(false);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, false);
         }
         catch (Exception e) {
         }
@@ -163,7 +168,8 @@ public class GCWC2 implements Strategy {
         try {
             allPartial(requirement);
 
-            StatusStore.getStatusStore().setBasicAnalysis(false);
+            //StatusStore.getStatusStore().setBasicAnalysis(false);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, false);
         }
         catch (Exception e) {
         }
@@ -175,7 +181,8 @@ public class GCWC2 implements Strategy {
         readyClasses = new Vector<>();
 
         try {
-            StatusStore.getStatusStore().setBasicAnalysis(false);
+            //StatusStore.getStatusStore().setBasicAnalysis(false);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, false);
         }
         catch (Exception e) {
         }

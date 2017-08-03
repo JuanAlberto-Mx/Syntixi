@@ -56,7 +56,8 @@ public class GCC implements Strategy {
             readyClasses.add(ctFacadeConnector);
             readyClasses.add(ctSimpleConnector);
 
-            StatusStore.getStatusStore().setBasicAnalysis(true);
+            //StatusStore.getStatusStore().setBasicAnalysis(true);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, true);
         }
         catch (Exception e) {
         }
@@ -91,7 +92,8 @@ public class GCC implements Strategy {
             readyClasses.add(ctFacadeConnector);
             readyClasses.add(ctSimpleConnector);
 
-            StatusStore.getStatusStore().setBasicAnalysis(true);
+            //StatusStore.getStatusStore().setBasicAnalysis(true);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, true);
         }
         catch (Exception e) {
         }
@@ -133,7 +135,8 @@ public class GCC implements Strategy {
             readyClasses.add(ctFacadeConnector);
             readyClasses.add(ctSimpleConnector);
 
-            StatusStore.getStatusStore().setBasicAnalysis(true);
+            //StatusStore.getStatusStore().setBasicAnalysis(true);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, true);
         }
         catch (Exception e) {
         }
@@ -147,7 +150,8 @@ public class GCC implements Strategy {
         try {
             completeAndPartial(requirement);
 
-            StatusStore.getStatusStore().setBasicAnalysis(false);
+            //StatusStore.getStatusStore().setBasicAnalysis(false);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, false);
         }
         catch (Exception e) {
         }
@@ -158,7 +162,8 @@ public class GCC implements Strategy {
         try {
             allComplete(requirement);
 
-            StatusStore.getStatusStore().setBasicAnalysis(false);
+            //StatusStore.getStatusStore().setBasicAnalysis(false);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, false);
         }
         catch (Exception e) {
         }
@@ -169,7 +174,8 @@ public class GCC implements Strategy {
         try {
             allPartial(requirement);
 
-            StatusStore.getStatusStore().setBasicAnalysis(false);
+            //StatusStore.getStatusStore().setBasicAnalysis(false);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, false);
         }
         catch (Exception e) {
         }
@@ -181,7 +187,8 @@ public class GCC implements Strategy {
         readyClasses = new Vector<>();
 
         try {
-            StatusStore.getStatusStore().setBasicAnalysis(false);
+            //StatusStore.getStatusStore().setBasicAnalysis(false);
+            StatusStore.getStatusStore().setRequirementStatus(requirement, false);
         }
         catch (Exception e) {
         }
