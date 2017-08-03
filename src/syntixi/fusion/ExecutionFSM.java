@@ -17,7 +17,7 @@ public class ExecutionFSM implements State {
     private Executor executor;
 
     /**
-     * Constructor for initializing the {@code Executor} class features.
+     * Constructor for initializing the <code>Executor</code> class features.
      */
     public ExecutionFSM() {
         executor = new Executor();
