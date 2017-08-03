@@ -1,13 +1,14 @@
 package syntixi.util.xml;
 
 /**
- * <code>XMLCommand</code> class allows to encapsulate a set of operations to
- * interact with <code>XML</code> files.
+ * <code>FillXMLInstance</code> class allows to encapsulate a set of operations to
+ * fill <code>XML</code> instances into <code>Java</code> beans with equivalent
+ * structure to the current <code>XML</code> file.
  *
  * @author Juan-Alberto Hern&aacute;ndez-Mart&iacute;nez
  * @version %I%, %G%
  */
-public class XMLCommand implements Command {
+public class FillXMLInstance implements Command {
 
     /**
      * Instance to the <code>XML</code> manager.
@@ -20,7 +21,7 @@ public class XMLCommand implements Command {
      * @param xmlManager the <code>XML</code> manager to instantiate.
      * @see XMLManager
      */
-    public XMLCommand(XMLManager xmlManager) {
+    public FillXMLInstance(XMLManager xmlManager) {
         this.xmlManager = xmlManager;
     }
 
