@@ -5,6 +5,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import syntixi.fusion.core.knowledge.store.MonitoringStore;
 import syntixi.util.bean.Alternative;
 import syntixi.util.bean.Description;
 import syntixi.util.bean.Functionality;
@@ -57,6 +58,15 @@ public class XMLManager {
         requirement = new Requirement();
         description = new Description();
         alternative = new Alternative();
+    }
+
+    /**
+     * Constructor to initialize a <code>Requirement</code> instance.
+     *
+     * @param requirement the <code>Requirement</code> instance.
+     */
+    public XMLManager(Requirement requirement) {
+        this.requirement = requirement;
     }
 
     /**
@@ -149,6 +159,41 @@ public class XMLManager {
                 requirement.setAlternative(alternative);
                 break;
             default:
+                break;
+        }
+    }
+
+    /**
+     * Removes a <code>XML</code> instance from the requirement list.
+     */
+    public void deleteInstance() {
+        boolean flag = false;
+
+        for(File file : MonitoringStore.getMonitoringStore().getRequirements()) {
+            path = file.getPath();
+            NodeList childNodes = read();
+
+            for(int i = 0; i < childNodes.getLength(); i++) {
+                Node child = childNodes.item(i);
+
+                if(child.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) child;
+                    String tagName = element.getTagName();
+
+                    if(tagName.equals("description")) {
+                        String nameContent = element.getElementsByTagName("name").item(0).getTextContent();
+                        String nameRequirement = requirement.getDescription().getName();
+
+                        if(nameContent.equals(nameRequirement)) {
+                            MonitoringStore.getMonitoringStore().deleteRequirement(file);
+                            flag = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if(flag)
                 break;
         }
     }
