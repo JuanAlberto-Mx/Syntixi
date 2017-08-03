@@ -2,10 +2,15 @@ package syntixi.fusion.core.execution;
 
 import javassist.CtClass;
 import syntixi.fusion.Mapek;
+import syntixi.fusion.core.knowledge.store.AnalysisStore;
+import syntixi.fusion.core.knowledge.store.PlanningStore;
+import syntixi.fusion.core.knowledge.store.RequirementsStore;
+import syntixi.fusion.core.knowledge.store.StatusStore;
+import syntixi.util.xml.DeleteXMLInstance;
+import syntixi.util.xml.Invoker;
+import syntixi.util.xml.XMLManager;
 
 import java.util.Vector;
-
-import static syntixi.fusion.core.knowledge.store.PlanningStore.getPlanningStore;
 
 /**
  * <code>Executor</code> class encapsulates the functionality of a requirement dispatcher.
@@ -30,10 +35,33 @@ public class Executor implements Mapek {
      * Dispatches all user requirements detected.
      */
     public void dispatcher() {
-        getPlanningStore().getReadyComponents().forEach((requirement, ctClasses) -> {
+        /*getPlanningStore().getReadyComponents().forEach((requirement, ctClasses) -> {
             String alternative = requirement.getAlternative().getAlternative().trim().toUpperCase();
 
             determineFactory(alternative, ctClasses);
+        });*/
+        StatusStore.getStatusStore().getRequirementStatus().forEach((requirement, status) -> {
+            if(status) {
+                System.out.println("\tRequirement:\t" + requirement.getDescription().getName() + " is completed");
+            }
+            else {
+                System.out.println("\tRequirement:\t" + requirement.getDescription().getName() + " is not completed");
+            }
+
+            XMLManager xmlManager = new XMLManager(requirement);
+            DeleteXMLInstance deleteXMLInstance = new DeleteXMLInstance(xmlManager);
+
+            new Invoker().start(deleteXMLInstance);
+
+            //MonitoringStore.getMonitoringStore().printRequirements();
+
+            AnalysisStore.getAnalysisStore().deleteChecklist(requirement);
+            AnalysisStore.getAnalysisStore().deleteCandidateMethods(requirement);
+            PlanningStore.getPlanningStore().deleteComponentsPerRequirement(requirement);
+            PlanningStore.getPlanningStore().deleteFusionScenario(requirement);
+            PlanningStore.getPlanningStore().deleteProvisionPerComponent(requirement);
+            PlanningStore.getPlanningStore().deleteReadyComponents(requirement);
+            RequirementsStore.getRequirementsStore().deleteRequirement(requirement);
         });
     }
 
