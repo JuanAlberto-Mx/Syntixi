@@ -10,6 +10,9 @@ package syntixi.fusion.aop;
  */
 public aspect MapekAspect {
 
+    private static String[] signs = {"|", "/", "─", "\\"};
+    private static int pivot = 0;
+
     pointcut initMonitoring(): execution(public syntixi.fusion.MonitoringFSM.new()) ||
             execution(void syntixi.fusion.MapekTemplate.monitoring());
 
@@ -22,19 +25,58 @@ public aspect MapekAspect {
     pointcut initExecution(): execution(public syntixi.fusion.ExecutionFSM.new()) ||
             execution(void syntixi.fusion.MapekTemplate.execution());
 
+    pointcut workingMonitoring(): execution(void syntixi.fusion.State.working()) &&
+            within(syntixi.fusion.MonitoringFSM);
+
+    pointcut workingAnalysis(): execution(void syntixi.fusion.State.working()) &&
+            within(syntixi.fusion.AnalysisFSM);
+
+    pointcut workingPlanning(): execution(void syntixi.fusion.State.working()) &&
+            within(syntixi.fusion.PlanningFSM);
+
+    pointcut workingExecution(): execution(void syntixi.fusion.State.working()) &&
+            within(syntixi.fusion.ExecutionFSM);
+
     before(): initMonitoring() {
-        System.out.println("Initializing Monitoring Stage");
+        System.out.println("[MAPE-K]\tMonitoring stage initialized");
     }
 
     before(): initAnalysis() {
-        System.out.println("Initializing Analysis Stage");
+        System.out.println("[MAPE-K]\tAnalysis stage initialized");
     }
 
     before(): initPlanning() {
-        System.out.println("Initializing Planning Stage");
+        System.out.println("[MAPE-K]\tPlanning stage initialized");
     }
 
     before(): initExecution() {
-        System.out.println("Initializing Execution Stage");
+        System.out.println("[MAPE-K]\tExecution stage initialized");
+    }
+
+    before(): workingMonitoring() {
+        System.out.print("[Monitoring]\t" + getSign());
+    }
+
+    before(): workingAnalysis() {
+        System.out.println("[Analysis]\t Started");
+    }
+
+    before(): workingPlanning() {
+        System.out.println("[Planning]\t Started");
+    }
+
+    before(): workingExecution() {
+        System.out.println("[Execution]\t Started");
+    }
+
+    private String getSign() {
+        String sign = signs[pivot] + "\r";
+
+        pivot++;
+
+        if(pivot == 4)
+            pivot = 0;
+
+        return sign;
     }
 }
