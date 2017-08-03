@@ -3,6 +3,7 @@ package syntixi.fusion.core.monitoring;
 import com.sun.tools.attach.VirtualMachine;
 import com.sun.tools.attach.VirtualMachineDescriptor;
 import syntixi.fusion.core.knowledge.store.MonitoringStore;
+import syntixi.util.settings.Exceptions;
 
 import static syntixi.fusion.core.knowledge.store.MonitoringStore.getMonitoringStore;
 
@@ -53,8 +54,7 @@ public class Component extends Environment {
      */
     public void findComponents() {
         for(VirtualMachineDescriptor vmd: VirtualMachine.list()) {
-            if(!vmd.displayName().contains("/") && !vmd.displayName().contains("com.intellij.idea.Main") &&
-                    !vmd.displayName().contains("Generator") && !vmd.displayName().contains("syntixi"))
+            if(!Exceptions.exists(vmd.displayName()))
                 if(!componentExists(vmd))
                     setVirtualMachineDescriptor(vmd);
         }
