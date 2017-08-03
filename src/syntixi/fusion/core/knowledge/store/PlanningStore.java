@@ -126,6 +126,42 @@ public final class PlanningStore {
     }
 
     /**
+     * Removes the components related to a specific requirement.
+     *
+     * @param requirement the current requirement.
+     */
+    public void deleteComponentsPerRequirement(Requirement requirement) {
+        componentsPerRequirement.remove(requirement);
+    }
+
+    /**
+     * Removes the provision and the components related to a specific requirement.
+     *
+     * @param requirement the requirement to remove.
+     */
+    public void deleteProvisionPerComponent(Requirement requirement) {
+        provisionPerComponent.remove(requirement);
+    }
+
+    /**
+     * Removes the fusion scenario for a specific requirement.
+     *
+     * @param requirement the requirement tha contains the scenario to remove.
+     */
+    public void deleteFusionScenario(Requirement requirement) {
+        fusionScenario.remove(requirement);
+    }
+
+    /**
+     * Removes the components related to a specific requirement.
+     *
+     * @param requirement the requirement associated to the components.
+     */
+    public void deleteReadyComponents(Requirement requirement) {
+        readyComponents.remove(requirement);
+    }
+
+    /**
      * Returns a <code>PlanningStore</code> instance.
      *
      * @return the <code>PlanningStore</code> instance.

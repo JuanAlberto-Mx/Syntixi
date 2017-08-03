@@ -50,6 +50,15 @@ public final class RequirementsStore {
     }
 
     /**
+     * Removes a specific requirement from the requirement list.
+     *
+     * @param requirement the requirement to remove.
+     */
+    public void deleteRequirement(Requirement requirement) {
+        requirements.remove(requirement);
+    }
+
+    /**
      * Returns a unique <code>RequirementsStore</code> class instance.
      *
      * @return the <code>RequirementsStore</code> class instance.

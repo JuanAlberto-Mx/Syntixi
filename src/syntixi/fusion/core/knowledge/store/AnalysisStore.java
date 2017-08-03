@@ -141,6 +141,24 @@ public final class AnalysisStore {
     }
 
     /**
+     * Removes the checklist for a specific requirement.
+     *
+     * @param requirement the requirement that contains the checklist.
+     */
+    public void deleteChecklist(Requirement requirement) {
+        checklists.remove(requirement);
+    }
+
+    /**
+     * Remove the candidate methods for a specific requirement.
+     *
+     * @param requirement the requirement that contains the candidate methods.
+     */
+    public void deleteCandidateMethods(Requirement requirement) {
+        candidateMethods.remove(requirement);
+    }
+
+    /**
      * Returns a unique <code>AnalysisStore</code> class instance.
      *
      * @return the <code>AnalysisStore</code> class instance.

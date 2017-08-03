@@ -70,6 +70,15 @@ public final class MonitoringStore {
     }
 
     /**
+     * Deletes a <code>XML</code> file from the list of requirements.
+     *
+     * @param file the <code>XML</code> file to remove.
+     */
+    public void deleteRequirement(File file) {
+        requirements.remove(file);
+    }
+
+    /**
      * Returns a list of <code>XML</code> user requirements.
      *
      * @return the list of <code>XML</code> user requirements.
@@ -103,13 +112,17 @@ public final class MonitoringStore {
      * Prints the content of the <code>XML</code> user requirements list.
      */
     public void printRequirements() {
-        requirements.forEach(file -> System.out.println(file.getAbsolutePath()));
+        requirements.forEach(file -> {
+            System.out.println("[Monitoring Store]\tRequirement:\t" + file.getName());
+        });
     }
 
     /**
      * Prints the content of the running components list.
      */
     public void printComponents() {
-        components.forEach(vmd -> System.out.println(vmd.displayName()));
+        components.forEach(vmd -> {
+            System.out.println("[Monitoring Store]\tComponent:\t" + vmd.displayName());
+        });
     }
 }
