@@ -1,7 +1,7 @@
 package syntixi.fusion.core.analysis;
 
+import agent.JVMExplorer;
 import com.sun.tools.attach.VirtualMachineDescriptor;
-import syntixi.instrumentation.agent.JVMExplorer;
 import syntixi.util.bean.Checklist;
 import syntixi.util.bean.Functionality;
 import syntixi.util.bean.Requirement;
@@ -60,7 +60,6 @@ public class ComponentAnalyzer {
     public void separateComponents() {
         String className;
         Class cls;
-        ClassExplorer classExplorer = new ClassExplorer();
 
         for(VirtualMachineDescriptor vmd : getMonitoringStore().getComponents()) {
             if (vmd.displayName().contains(" "))
@@ -69,7 +68,7 @@ public class ComponentAnalyzer {
                 className = vmd.displayName();
 
             if(!className.trim().isEmpty()) {
-                cls = classExplorer.getClass(className);
+                cls = ClassExplorer.getClass(className);
 
                 if(ComponentExplorer.isFusionable(cls))
                     getAnalysisStore().setFusionableComponents(cls);

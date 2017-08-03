@@ -3,8 +3,8 @@ package syntixi.fusion.core.analysis;
 import syntixi.fusion.Mapek;
 import syntixi.util.bean.Checklist;
 import syntixi.util.bean.Requirement;
+import syntixi.util.xml.FillXMLInstance;
 import syntixi.util.xml.Invoker;
-import syntixi.util.xml.XMLCommand;
 import syntixi.util.xml.XMLManager;
 
 import java.io.File;
@@ -45,13 +45,13 @@ public class Analyzer implements Mapek {
      */
     private void analyzeXML() {
         XMLManager xmlManager;
-        XMLCommand xmlCommand;
+        FillXMLInstance fillXMLInstance;
 
         for(File file : getMonitoringStore().getRequirements()) {
             xmlManager = new XMLManager(file.getAbsolutePath());
-            xmlCommand = new XMLCommand(xmlManager);
+            fillXMLInstance = new FillXMLInstance(xmlManager);
 
-            new Invoker().start(xmlCommand);
+            new Invoker().start(fillXMLInstance);
         }
     }
 
