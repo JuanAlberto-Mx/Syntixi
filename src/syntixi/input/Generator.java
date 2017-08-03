@@ -38,24 +38,11 @@ public class Generator {
      *                establish an active execution mode.
      */
     public static void proceed(String command) {
-        if(command == null) {
-            System.out.println("Sýntixi's command line arguments:\n");
-            System.out.println("\t[-reactive] or [-r] to start the Sensor mode\n" +
-                    "\t[-active] or [-a] to start the PushButton mode\n");
-        }
-        else if(command.equals("-reactive") || command.equals("-r") || command.isEmpty()) {
-            System.out.println("Invoking Sensor with [-reactive | -r] mode");
+        if(command.equals("-reactive") || command.equals("-r") || command.isEmpty()) {
             new Sensor().run();
         }
         else if(command.equals("-active") || command.equals("-a")) {
-            System.out.println("Invoking PushButton with [-active | -a] mode");
             new PushButton().run();
-        }
-        else {
-            System.err.println("Invalid command line argument!\n");
-            System.out.println("Sýntixi's command line arguments accepted:\n");
-            System.out.println("\t[-reactive] or [-r] to start the Sensor mode\n" +
-                    "\t[-active] or [-a] to start the PushButton mode\n");
         }
     }
 
